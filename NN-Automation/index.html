@@ -1,0 +1,94 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>NN Articles</title>
+  <meta name="description" content="This site utilizes an API to get articles from google news searching certain keywords.">
+  <meta name="author" content="Simone">
+
+  <link rel="icon" href="assets/newspaper-solid.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <link rel="stylesheet" href="index.css">
+
+</head>
+
+<body>
+  <div class="search-filters">
+    <div class="dropdown-container filter-flex">
+        <div class="select-dropdown">
+            <div class="toggle-dropdown keywords">
+                <span>Keywords</span>
+                <img src="assets/chevron-down-solid.svg">
+            </div> 
+            <div class="selection keywords hide">
+                <div class="select-item"><span>Drug Trafficking</span><div class="selected checkbox"></div></div>
+                <div class="select-item"><span>Sanctions</span><div class=" checkbox"></div></div>
+                <div class="select-item"><span>Money Laundering</span><div class=" checkbox"></div></div>
+                <div class="select-item"><span>Fraud</span><div class=" checkbox"></div></div>
+                <div class="select-item"><span>Drugs</span><div class=" checkbox"></div></div>
+                <div class="select-item"><span>Food</span><div class=" checkbox"></div></div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="dropdown-container filter-flex">
+        <div class="select-dropdown">
+            <div class="toggle-dropdown sources">
+                <span>Sources</span>
+                <img src="assets/chevron-down-solid.svg">
+            </div>
+            <div class="selection sources hide">
+                <div class="select-item"><span data-value="cbc.ca">CBC</span><div class="selected checkbox"></div></div>
+                <div class="select-item"><span data-value="ctvnews.ca">CTV</span><div class="selected checkbox"></div></div>
+                <div class="select-item"><span data-value="cp24.com">CP24</span><div class="selected checkbox"></div></div>
+                <div class="select-item"><span data-value="rcmp-grc.gc.cs">RCMP</span><div class="selected checkbox"></div></div>
+                <div class="select-item"><span data-value="globalnews.ca">GLOBAL</span><div class="selected checkbox"></div></div>
+                <div class="select-item"><span data-value="thestar.com">TORONTO STAR</span><div class="selected checkbox"></div></div>
+                <div class="select-item"><span data-value="allow-all">Search Outside Sources</span><div class="checkbox"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="date filter-flex">
+        <div>
+            <label for="start">Start date:</label>
+            <input class="date-select" type="date" id="start" name="start" value="2023-03-25" min="1950-01-01" max="2045-01-01">
+        </div>
+    </div>
+    <div class="date filter-flex">
+        <div>
+            <label for="end">End date:</label>     
+            <input class="date-select" type="date" id="end" name="end" value="2023-03-25" min="1950-01-01" max="2045-01-01">
+        </div>
+    </div>
+    <script>
+        let td =  new Date();
+        let yd =  new Date(td);
+        yd.setDate(yd.getDate() - 1);
+        tdStr =  td.getFullYear() + '-'
+             + ('0' + (td.getMonth()+1)).slice(-2) + '-'
+             + ('0' + td.getDate()).slice(-2);
+        ydStr =  yd.getFullYear() + '-'
+        + ('0' + (yd.getMonth()+1)).slice(-2) + '-'
+        + ('0' + yd.getDate()).slice(-2);
+        document.getElementById("start").value = ydStr;
+        document.getElementById("end").value = tdStr;
+    </script>   
+    <div class="search-button filter-flex">search</div>
+  </div>
+  <div class="table-container">
+    <div class="table-row table-header">
+        <div class="table-cell source">Source</div>
+        <div class="table-cell title">Title</div>
+        <div class="table-cell description">Description</div>
+        <div class="table-cell url">URL</div>
+        <div class="table-cell gpt">GPT SUMMARY</div>
+    </div>
+  </div>
+  <script src="index.js"></script>
+</body>
+</html>
